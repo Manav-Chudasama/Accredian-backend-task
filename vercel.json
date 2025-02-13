@@ -17,11 +17,5 @@
         "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Authorization"
       }
     }
-  ],
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "EMAIL_USER": "@email_user",
-    "EMAIL_PASSWORD": "@email_password",
-    "FRONTEND_URL": "@frontend_url"
-  }
+  ]
 }
