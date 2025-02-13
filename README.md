@@ -37,3 +37,25 @@ A Node.js backend service for managing course referrals using Express and Prisma
 - User statistics
 - Referral tracking
 - Email notifications
+
+## Deployment on Vercel
+
+1. Create a Vercel account and install Vercel CLI:
+   ```bash
+   npm i -g vercel
+   ```
+
+2. Login to Vercel:
+   ```bash
+   vercel login
+   ```
+
+3. Deploy the project:
+   ```bash
+   vercel
+   ```
+
+4. Set up environment variables in Vercel dashboard:
+   - Go to your project settings
+   - Navigate to "Environment Variables"
+   - Add all required variables from `.env.sample`
