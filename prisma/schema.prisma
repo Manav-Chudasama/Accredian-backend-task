@@ -1,0 +1,31 @@
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Referral {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Referrer information
+  referrerName  String @db.VarChar(255)
+  referrerEmail String @db.VarChar(255)
+
+  // Referee information
+  refereeName  String @db.VarChar(255)
+  refereeEmail String @db.VarChar(255)
+  courseId     String @db.VarChar(255)
+
+  // Status tracking
+  status    String  @default("PENDING") @db.VarChar(50)
+  emailSent Boolean @default(false)
+
+  @@index([referrerEmail])
+  @@index([refereeEmail])
+}
