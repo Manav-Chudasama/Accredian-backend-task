@@ -67,13 +67,124 @@ app.post("/api/referrals", validateReferralData, async (req, res) => {
       to: referee.email,
       subject: `${referrer.name} has referred you to a course!`,
       html: `
-        <h1>Hello ${referee.name}!</h1>
-        <p>${referrer.name} thinks you'd be interested in our courses.</p>
-        <p>You've been referred to: ${referee.course}</p>
-        <p>Click the link below to get started with a special discount:</p>
-        <a href="${process.env.FRONTEND_URL}/signup?ref=${referral.id}">
-          Start Learning Now
-        </a>
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Course Referral</title>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f9fafb;
+              }
+              .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #ffffff;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+              }
+              .header {
+                text-align: center;
+                padding: 20px 0;
+                background: linear-gradient(to right, #7c3aed, #2563eb);
+                color: white;
+                border-radius: 8px 8px 0 0;
+                margin: -20px -20px 20px -20px;
+              }
+              .content {
+                padding: 20px;
+              }
+              .cta-button {
+                display: inline-block;
+                padding: 12px 24px;
+                background: linear-gradient(to right, #7c3aed, #2563eb);
+                color: white;
+                text-decoration: none;
+                border-radius: 25px;
+                font-weight: bold;
+                margin: 20px 0;
+              }
+              .footer {
+                text-align: center;
+                margin-top: 20px;
+                padding-top: 20px;
+                border-top: 1px solid #e5e7eb;
+                color: #6b7280;
+                font-size: 0.875rem;
+              }
+              .highlight {
+                color: #7c3aed;
+                font-weight: bold;
+              }
+              .discount-badge {
+                background-color: #fee2e2;
+                color: #dc2626;
+                padding: 4px 12px;
+                border-radius: 15px;
+                font-size: 0.875rem;
+                font-weight: bold;
+                display: inline-block;
+                margin: 10px 0;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h1>Special Course Invitation!</h1>
+              </div>
+              <div class="content">
+                <h2>Hello ${referee.name}! 👋</h2>
+                
+                <p>Great news! <span class="highlight">${
+                  referrer.name
+                }</span> thinks you'd be interested in our amazing courses.</p>
+                
+                <div style="text-align: center;">
+                  <span class="discount-badge">Special 20% OFF for referred friends!</span>
+                </div>
+                
+                <p>You've been referred to our <span class="highlight">${
+                  referee.course
+                }</span> course. Here's what you'll get:</p>
+                
+                <ul>
+                  <li>🎯 Industry-relevant curriculum</li>
+                  <li>👨‍🏫 Expert instructors</li>
+                  <li>🎖️ Certification upon completion</li>
+                  <li>💰 Special referral discount</li>
+                </ul>
+                
+                <div style="text-align: center; color: #ffffff;">
+                  <a style="color: #ffffff; text-decoration: none;" href="${
+                    process.env.FRONTEND_URL
+                  }
+      }" class="cta-button">
+                    Start Learning Now
+                  </a>
+                </div>
+                
+                <p style="font-size: 0.875rem; color: #ffffff;">
+                  This special offer is exclusive to referred friends and expires in 7 days.
+                </p>
+              </div>
+              
+              <div class="footer">
+                <p>© ${new Date().getFullYear()} Accredian. All rights reserved.</p>
+                <p>
+                  Questions? Email us at 
+                  <a href="mailto:support@accredian.com" style="color: #7c3aed;">support@accredian.com</a>
+                </p>
+              </div>
+            </div>
+          </body>
+        </html>
       `,
     };
 
