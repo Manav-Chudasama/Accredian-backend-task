@@ -102,6 +102,10 @@ app.post("/api/referrals", validateReferralData, async (req, res) => {
   }
 });
 
+app.get("/", async (req, res) => {
+  res.send("Hello World");
+});
+
 // Get all unique users and count
 app.get("/api/users/stats", async (req, res) => {
   try {
